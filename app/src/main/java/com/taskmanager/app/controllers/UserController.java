@@ -1,11 +1,11 @@
 package com.taskmanager.app.controllers;
 
-import com.taskmanager.app.entitys.User;
+import com.taskmanager.app.entity.User;
 import com.taskmanager.app.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
 
 @RestController
 public class UserController {
@@ -16,6 +16,10 @@ public class UserController {
     @PostMapping("user")
     public void registerUser(@RequestBody User user){
         userService.registerUser(user);
+    }
+    @GetMapping("user/details/{id}")
+    public Optional<User> getUserDetails(@PathVariable Integer userId){
+        return  userService.getUserDetails(userId);
     }
 
 }

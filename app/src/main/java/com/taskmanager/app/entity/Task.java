@@ -1,4 +1,4 @@
-package com.taskmanager.app.entitys;
+package com.taskmanager.app.entity;
 
 import com.taskmanager.app.enums.TaskPriority;
 import com.taskmanager.app.enums.TaskStatus;

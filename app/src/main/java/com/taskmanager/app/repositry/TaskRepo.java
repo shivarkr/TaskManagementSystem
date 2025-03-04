@@ -1,6 +1,6 @@
 package com.taskmanager.app.repositry;
 
-import com.taskmanager.app.entitys.Task;
+import com.taskmanager.app.entity.Task;
 import com.taskmanager.app.enums.TaskStatus;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
