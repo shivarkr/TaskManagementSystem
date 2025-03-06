@@ -49,7 +49,7 @@ public class TaskServiceImpl implements TaskService {
         taskRepo.deleteById(taskId);
     }
 
-    // both admin and user
+    //both admin and user
     private User getCurrentUser() {
         OAuth2User oAuth2User = (OAuth2User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String email = (String) oAuth2User.getAttributes().get("email");
@@ -59,13 +59,13 @@ public class TaskServiceImpl implements TaskService {
     private boolean isAdmin(User user) {
         return user.getRole().equals(Role.ADMIN);
     }
-    private boolean checkIfAccessIsAvailable(Integer userId){
+    private boolean checkIfAuthorized(Integer userId){
         User currentUser = getCurrentUser();
         return isAdmin(currentUser) || currentUser.getUserId().equals(userId);
     }
 
     public List<Task> getAssignedTasks(Integer userId) {
-        if (checkIfAccessIsAvailable(userId)) {
+        if (checkIfAuthorized(userId)) {
             return taskRepo.findByUserId1(userId);
         } else {
             throw new AccessDeniedException("You do not have permission to access these tasks.");
@@ -73,16 +73,15 @@ public class TaskServiceImpl implements TaskService {
     }
 
     public List<Task> getAssignedTasksOrderdedByPriority(Integer userId) {
-        if (checkIfAccessIsAvailable(userId)) {
+        if (checkIfAuthorized(userId)) {
             return taskRepo.getTasksForUserByPriorityHigh(userId);
         } else {
             throw new AccessDeniedException("You do not have permission to access these tasks.");
         }
-
     }
 
     public List<Task> getAssignedTasksByStatus(TaskStatus status, Integer userId) {
-        if (checkIfAccessIsAvailable(userId)) {
+        if (checkIfAuthorized(userId)) {
             return taskRepo.getAssignedTasksByStatus(userId,status);
         } else {
             throw new AccessDeniedException("You do not have permission to access these tasks.");
@@ -90,7 +89,7 @@ public class TaskServiceImpl implements TaskService {
     }
 
     public List<Task> getAssignedTasksOrderdedByPriorityLow(Integer userId) {
-        if (checkIfAccessIsAvailable(userId)) {
+        if (checkIfAuthorized(userId)) {
             return taskRepo.getTasksForUserByPriorityLow(userId);
         } else {
             throw new AccessDeniedException("You do not have permission to access these tasks.");
@@ -98,17 +97,18 @@ public class TaskServiceImpl implements TaskService {
     }
 
     public List<Task> getAssignedTasksOrderdedByDueDateLow(Integer userId) {
-        if (checkIfAccessIsAvailable(userId)) {
+        if (checkIfAuthorized(userId)) {
             return taskRepo.getTasksForUserByDueDateLow(userId);
         } else {
             throw new AccessDeniedException("You do not have permission to access these tasks.");
         }
     }
     public List<Task> getAssignedTasksOrderdedByDueDateHigh(Integer userId) {
-        if (checkIfAccessIsAvailable(userId)) {
+        if (checkIfAuthorized(userId)) {
             return taskRepo.getTasksForUserByDueDateHigh(userId);
         } else {
             throw new AccessDeniedException("You do not have permission to access these tasks.");
         }
     }
+
 }
