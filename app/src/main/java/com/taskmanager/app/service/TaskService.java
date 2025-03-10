@@ -47,15 +47,15 @@ public class TaskService {
     public List<Task> getAssignedTasksByStatus(TaskStatus status, Integer taskId) {
         return taskRepo.getAssignedTasksByStatus(taskId,status);
     }
-//
-//    public List<Task> getAssignedTasksOrderdedByPriorityLow(Integer userId) {
-//        return taskRepo.getTasksForUserByPriorityLow(userId);
-//    }
-//
-//    public List<Task> getAssignedTasksOrderdedByDueDateLow(Integer userId) {
-//        return taskRepo.getTasksForUserByDueDateLow(userId);
-//    }
-//    public List<Task> getAssignedTasksOrderdedByDueDateHigh(Integer userId) {
-//        return taskRepo.getTasksForUserByDueDateHigh(userId);
-//    }
+
+    public List<Task> getAssignedTasksOrderdedByPriorityLow(Integer userId) {
+        return taskRepo.getTasksForUserByPriorityLow(userId);
+    }
+
+    public List<Task> getAssignedTasksOrderdedByDueDateLow(Integer userId) {
+        return taskRepo.getTasksForUserByDueDateLow(userId);
+    }
+    public List<Task> getAssignedTasksOrderdedByDueDateHigh(Integer userId) {
+        return taskRepo.getTasksForUserByDueDateHigh(userId);
+    }
 }
