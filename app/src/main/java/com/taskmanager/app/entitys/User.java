@@ -12,6 +12,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Integer userId;
     private String userName;
+    private String userPassword;
     @Enumerated(EnumType.STRING)
     private Role role;
 }
